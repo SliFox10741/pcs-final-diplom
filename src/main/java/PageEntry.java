@@ -15,4 +15,11 @@ public class PageEntry implements Comparable<PageEntry> {
     }
 
     // ???
+
+    @Override
+    public String toString() {
+        return "pdfName: " + pdfName +
+                "\npage: " + page +
+                "\ncount: " + count;
+    }
 }
