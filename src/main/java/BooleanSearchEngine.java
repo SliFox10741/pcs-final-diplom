@@ -16,6 +16,8 @@ public class BooleanSearchEngine implements SearchEngine {
         // прочтите тут все pdf и сохраните нужные данные,
         // тк во время поиска сервер не должен уже читать файлы
 
+        A a = new A();
+
         jsonWritter = new JsonWritter();
 
         File[] arrFiles = pdfsDir.listFiles();
@@ -49,25 +51,30 @@ public class BooleanSearchEngine implements SearchEngine {
                     } else {
                         mapObjects.put(word, new PageEntryBuilder().setPdfName(file.getName()).setPage(i));
                     }
+
                 }
 
                 s = Stream.of(words).distinct().collect(Collectors.toList());
 
-                System.out.println(words.length);
-                System.out.println(s.size());
+//                System.out.println(words.length);
+//                System.out.println(s.size());
 
                 for (String word : s) {
-                    preparedMap.put(word, mapObjects.get(word).build());
-                    System.out.println(word + "\n" + preparedMap.get(word) + "\n");
+                    a.addObj(word, mapObjects);
+//                    preparedMap.put(word, mapObjects.get(word).build());
+//                    System.out.println(word + "\n" + preparedMap.get(word) + "\n");
                 }
 
+            mapObjects.clear();
             }
 //            break;
         }
+//        a.lookAll();
 //        jsonWritter.toJsonFile(mapObjects);
 //        for (int i = 0; i < mapObjects.size(); i++) {
 //            mapObjects.get("бизнес").;
 //        }
+        a.end();
     }
 
     @Override
