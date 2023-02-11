@@ -1,3 +1,5 @@
+package OtherClass;
+
 public class PageEntryBuilder {
     private String pdfName;
     private int page;
@@ -21,7 +23,6 @@ public class PageEntryBuilder {
         count++;
     }
     public PageEntry build() {
-        PageEntry pageEntry = new PageEntry(pdfName, page, count);
         return new PageEntry(pdfName, page, count);
     }
 
