@@ -1,5 +1,3 @@
-package OtherClass;
-
 public class PageEntryBuilder {
     private String pdfName;
     private int page;

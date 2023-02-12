@@ -1,5 +1,3 @@
-package OtherClass;
-
 public class PageEntry implements Comparable<PageEntry> {
     private final String pdfName;
     private final Integer page;

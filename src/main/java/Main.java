@@ -1,12 +1,8 @@
-package Server;
-
-import OtherClass.BooleanSearchEngine;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Server {
+public class Main {
     public static void main(String... args) throws Exception {
 
         String word;
