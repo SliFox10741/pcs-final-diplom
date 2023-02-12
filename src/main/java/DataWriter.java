@@ -40,17 +40,15 @@ public class DataWriter {
         }
     }
 
-    public String fromJsonFile(String word) {
+    public Map<String, List<PageEntry>> fromJsonFile() {
         JSONParser parser = new JSONParser();
-        JSONArray jsonArray = new JSONArray();
+        Map<String, List<PageEntry>> map = null;
         try {
             Object obj = parser.parse(new FileReader(jsonFile));
-            JSONObject jsonObject = (JSONObject) obj;
-            jsonArray = (JSONArray) jsonObject.get(word);
-            System.out.println(jsonArray);
+            map = (JSONObject) obj;
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        return jsonArray.toJSONString();
+        return map;
     }
 }

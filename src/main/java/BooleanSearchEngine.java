@@ -9,12 +9,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class BooleanSearchEngine implements SearchEngine {
+    Map<String, List<PageEntry>> listMap;
 
     public BooleanSearchEngine(File pdfsDir) throws IOException {
         // прочтите тут все pdf и сохраните нужные данные,
         // тк во время поиска сервер не должен уже читать файлы
 
         WorkWithMap workerMap = new WorkWithMap();
+        DataWriter dataWriter = new DataWriter();
         PdfDocument doc;
         String[] words;
         PageEntryBuilder obj;
@@ -55,16 +57,16 @@ public class BooleanSearchEngine implements SearchEngine {
             }
         }
         workerMap.end(list);
+        listMap = dataWriter.fromJsonFile();
     }
 
     @Override
     public String search(String word) {
-        DataWriter dataWriter = new DataWriter();
-        String wordList = dataWriter.fromJsonFile(word);
-        if (wordList == null) {
+        List<PageEntry> pageEntryList = listMap.get(word);
+        if (pageEntryList == null) {
             throw new RuntimeException("Этого слова нет в файлах!!!");
         } else {
-            return wordList;
+            return pageEntryList.toString();
         }
     }
 }
